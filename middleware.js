@@ -6,7 +6,7 @@ export default function middleware(request) {
 
 
   console.debug("Start");
-  if (userAgent && host && Boolean(host.match(/\.campaigns|conversations\./))) {
+  if (userAgent && host) {
     const agents =
       ".*(googlebot|adsbot-google|Feedfetcher-Google|bingbot|yandex|baiduspider|Facebot|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator|redditbot|applebot|whatsapp|flipboard|tumblr|bitlybot|skypeuripreview|nuzzel|discordbot|google page speed|qwantify|pinterestbot|bitrix link preview|xing-contenttabreceiver|chrome-lighthouse|telegrambot).*";
     const prerender = new RegExp(agents, "i").test(userAgent);
