@@ -1,4 +1,4 @@
-export default function middleware(request: Request) {
+export default async function middleware(request: Request) {
   const { headers } = request;
   const host =
     "https://test-avatar-and-logo-upload-wegroup-nv.campaigns.staging.louiseforbrokers.be/#/?lang=nl";
@@ -13,15 +13,7 @@ export default function middleware(request: Request) {
       "https://prerender-campaign.vercel.app"
     );
 
-    const prerenderRequest = new Request(url, request);
-    prerenderRequest.headers.set(
-      "origin",
-      "https://prerender-campaign.vercel.app"
-    );
-    prerenderRequest.headers.set(
-      "host",
-      "https://prerender-campaign.vercel.app"
-    );
-    return request;
+    const resp = await fetch(url);
+    return resp;
   }
 }
