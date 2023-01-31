@@ -1,7 +1,11 @@
 export default function middleware(request) {
   const { headers } = request;
   const userAgent = headers["user-agent"];
-  const host = headers["host"];
+  const host =
+    "https://test-avatar-and-logo-upload-wegroup-nv.campaigns.staging.louiseforbrokers.be/#/?lang=nl";
+
+  const url = new URL(`/?url=${host}`, "https://prerender-campaign.vercel.app");
+  return Response.redirect(url);
 
   console.debug("Start");
   if (userAgent && host && Boolean(host.match(/\.campaigns|conversations\./))) {
