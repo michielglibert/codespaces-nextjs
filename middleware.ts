@@ -1,5 +1,3 @@
-import { rewrite } from "@vercel/edge";
-
 export default function middleware(request: Request) {
   const { headers } = request;
   const host =
@@ -15,6 +13,12 @@ export default function middleware(request: Request) {
       "https://prerender-campaign.vercel.app"
     );
 
-    return rewrite(url);
+    const headers = new Headers(request?.headers ?? {});
+    headers.set("x-middleware-rewrite", String(url));
+
+    return new Response(null, {
+      ...request,
+      headers,
+    });
   }
 }
