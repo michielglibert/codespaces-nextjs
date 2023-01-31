@@ -1,4 +1,6 @@
-export default async function middleware(request: Request) {
+import { rewrite } from "@vercel/edge";
+
+export default function middleware(request: Request) {
   const { headers } = request;
   const host =
     "https://test-avatar-and-logo-upload-wegroup-nv.campaigns.staging.louiseforbrokers.be/#/?lang=nl";
@@ -13,7 +15,6 @@ export default async function middleware(request: Request) {
       "https://prerender-campaign.vercel.app"
     );
 
-    const resp = await fetch(url);
-    return resp;
+    return rewrite(url);
   }
 }
